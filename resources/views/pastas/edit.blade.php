@@ -14,11 +14,19 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input value="{{ $pasta['description'] }}" type="text" name="description" class="form-control" id="description" placeholder="Enter pasta description">
+                        {{-- <input value="{{ $pasta['description'] }}" type="text" name="description" class="form-control" id="description" placeholder="Enter pasta description"> --}}
+
+                        <textarea class="form-control" id="description" name="description">{!! $pasta['description'] !!}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <input value="{{ $pasta['type'] }}" type="text" name="type" class="form-control" id="type" placeholder="Enter pasta type">
+                        {{-- <input value="{{ $pasta['type'] }}" type="text" name="type" class="form-control" id="type" placeholder="Enter pasta type"> --}}
+                        <select class="form-control" name="type" id="type">
+                            <option value="">-- Seleziona --</option>
+                            <option value="lunga" {{ $pasta['type'] == 'lunga' ? 'selected' : NULL}}>Lunga</option>
+                            <option value="corta" {{ $pasta['type'] == 'corta' ? 'selected' : NULL}}>Corta</option>
+                            <option value="cortissima" {{ $pasta['type'] == 'cortissima' ? 'selected' : NULL}}>Cortissima</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>
