@@ -38,6 +38,11 @@ class PastaController extends Controller
     {
         $data = $request->all();
 
+        $request->validate([
+            'title' => 'required|unique:pastas|max:50',
+            'type' => 'required|max:20'
+        ]);
+
         $new_pasta = new Pasta();
         // $new_pasta->title = $data['title'];
         // $new_pasta->description = $data['description'];
