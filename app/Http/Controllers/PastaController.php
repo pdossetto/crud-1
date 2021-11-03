@@ -73,7 +73,12 @@ class PastaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pasta = Pasta::findOrFail($id);
+        // if($pasta) {
+        //     return view('pastas.edit', compact('pasta'));
+        // }
+        // abort(404);
+        return view('pastas.edit', compact('pasta'));
     }
 
     /**
@@ -83,9 +88,11 @@ class PastaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pasta $pasta)
     {
-        //
+        $data = $request->all();
+        $pasta->update($data);
+        return redirect()->route('pastas.show', $pasta['id']); 
     }
 
     /**
@@ -94,8 +101,9 @@ class PastaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pasta $pasta)
     {
-        //
+        $pasta->delete();
+        return redirect()->route('pastas.index'); 
     }
 }
